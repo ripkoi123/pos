@@ -10,6 +10,8 @@ pip install django-crispy-forms
 
 pip install Pillow
 
+pip install django-filters
+
 Now you just need to run this command in the project root directory
 
 py manage.py runserver
