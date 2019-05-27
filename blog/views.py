@@ -53,7 +53,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def search(request):
     post_list = Post.objects.all()
     post_filter = PostFilter(request.GET, queryset=post_list)
-    return render(request, 'blog/find_post.html', {'filter': post_filter})
+    return render(request, 'blog/search.html', {'filter': post_filter})
 
 def about(request):
     return render(request, 'blog/about.html', {'title':'About'})
