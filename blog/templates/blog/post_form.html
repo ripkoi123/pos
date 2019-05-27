@@ -14,3 +14,7 @@
         </form>        
     </div>    
 {% endblock content %}
+{% include "blog/search.html"%}
+<!-- en el include puede poner un with para indicar que esta trabajando con algun objeto, 
+     tiene que existir en el view, por ejemplo
+     include "archivo.html" with post_list -->
