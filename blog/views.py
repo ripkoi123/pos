@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
+import django_filters
+from .filters import PostFilter
 
 def home(request):
     context = {
@@ -47,6 +49,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+def search(request):
+    post_list = Post.objects.all()
+    post_filter = PostFilter(request.GET, queryset=post_list)
+    return render(request, 'blog/find_post.html', {'filter': post_filter})
 
 def about(request):
     return render(request, 'blog/about.html', {'title':'About'})
