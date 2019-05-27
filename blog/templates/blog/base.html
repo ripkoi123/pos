@@ -56,8 +56,10 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            {% block content %}{% endblock %}
-            {% block content1 %}{% endblock %}
+            {% block content %}{% endblock %}            
+          </div>
+          <div class="col-md-4">
+            {% include search.html %}
           </div>
         </div>
       </main>
