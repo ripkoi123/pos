@@ -12,9 +12,11 @@
                 <button class="btn btn-outline-info" type="submit">Guardar</button>
             </div>        
         </form>        
-    </div>    
+    </div>     
 {% endblock content %}
-{% include "blog/search.html"%}
+{% block content1 %}
+    {% include "blog/search.html" %}
+{% endblock content1 %}
 <!-- en el include puede poner un with para indicar que esta trabajando con algun objeto, 
      tiene que existir en el view, por ejemplo
      include "archivo.html" with post_list -->
