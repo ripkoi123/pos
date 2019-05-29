@@ -1,11 +1,8 @@
- 
-  <form method="get">
+
+{% block content1 %}
   <p>Buscar Producto</p>
-    {{ filter.form.as_p}}
-    <button type="submit">Buscar</button>
+  <form method = "GET">
+    {{form.as_p}}
+    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
   </form>
-  <ul>
-    {% for post in filter.qs %}
-      <li>{{ post.title }} - {{ post.content }}</li>
-    {% endfor %}
-  </ul>
+{% endblock content1 %}

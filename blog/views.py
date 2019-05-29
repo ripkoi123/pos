@@ -1,9 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Post
-import django_filters
-from .filters import PostFilter
 
 def home(request):
     context = {
@@ -50,10 +48,18 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+class FormView():
+    model = Post
+    fields = ['title', 'content']
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 def search(request):
     post_list = Post.objects.all()
-    post_filter = PostFilter(request.GET, queryset=post_list)
-    return render(request, 'blog/search.html', {'filter': post_filter})
+    post_filter = post_list.contains("as")
+    fields = ['title']
+    return render(request, 'blog/search.html', {post_filter})
 
 def about(request):
     return render(request, 'blog/about.html', {'title':'About'})

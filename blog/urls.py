@@ -1,7 +1,5 @@
 from django.urls import path
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
-from django_filters.views import FilterView
-from blog.filters import PostFilter
 from . import views
 
 urlpatterns = [
@@ -10,6 +8,6 @@ urlpatterns = [
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
-    path('search/', FilterView.as_view(filterset_class=PostFilter, template_name='blog/search.html'), name='search'),
+    path('search/', views.search, name='search'),
     path('about/', views.about, name='blog-about'),
 ]
